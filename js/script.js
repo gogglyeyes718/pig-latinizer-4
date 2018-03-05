@@ -9,14 +9,23 @@
 $( document ).ready(function() {
 	$('#submit').click(function(){
 		var word = $('#input').val();
-		var piglatin = wordToPigLatin(word);
+		var piglatin = uppercaser(word);
 		$('#display').text(piglatin);
 	});
 });
 
+function uppercaser(sentence) {
+    var words = sentence.split(" ");
+    var uppercasedWords = "";
+    for (var i = 0; i < words.length; i++) {
+        var word = words[i];
+        uppercasedWords = uppercasedWords + " " + wordToPigLatin(word);
+    }
+    return uppercasedWords;
+}
+
 function startsWithAVowel(word) {
   var firstLetter = word[0].toLowerCase();
-  
   if (firstLetter === "a" || firstLetter === "e" || firstLetter === "i" || firstLetter === "o" || firstLetter === "u") {
     return true;
   } else {
@@ -42,6 +51,7 @@ function wordToPigLatin(word) {
 
 
 // Create the sentenceToPigLatin function that takes a sentence as a parameter
+
 	//Loops through all the words in the sentence and transforms each word
 	//It should return a transfromed sentance
 
